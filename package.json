@@ -1,0 +1,22 @@
+{
+  "name": "job-board",
+  "version": "1.0.0",
+  "description": "The best package you will ever find.",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/begonaguereca/job-board",
+    "type": "git"
+  },
+  "scripts": {
+    "build": "cd client && yarn install && yarn build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "postinstall": "yarn build && yarn deploy && echo 'Client built!'"
+  },
+  "engines": {
+    "yarn": "1.6.0",
+    "npm": "6.13.4",
+    "node": "12.16.1"
+  },
+  "author": "Begona Guereca",
+  "license": "MIT"
+}
