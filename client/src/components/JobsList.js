@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NewJobForm from "./NewJobForm";
+import Job from "./Job";
 
 const JobsList = (props) => {
   useEffect(() => {
     axios.get("/api/v1/jobs.json").then((res) => {
-      console.log(res.data);
       setJobs(res.data);
     });
   }, []);
@@ -39,15 +39,17 @@ const JobsList = (props) => {
 
   return (
     <div>
-      <div>
-        <NewJobForm addJob={addJob} initialFormState={initialFormState} />
-      </div>
       <div className="jobs-list">
-        {jobs.map((job, index) => (
-          <div key={index}>
-            {job.company} | {job.position} | {job.description}
-          </div>
-        ))}
+        <div>
+          <NewJobForm addJob={addJob} initialFormState={initialFormState} />
+        </div>
+        <br />
+        <hr />
+        <div>
+          {jobs.map((job, i) => (
+            <Job job={job} key={i} />
+          ))}
+        </div>
       </div>
     </div>
   );
